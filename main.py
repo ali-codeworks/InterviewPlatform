@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from src.configs import Base, engine
 from src.utils import success_res
 
@@ -13,11 +15,12 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+app.mount("/assets", StaticFiles(directory="client/dist/assets"), name="assets")
 
 
 @app.get("/")
 def root():
-    return success_res("Welcome back to the Interview Platform")
+    return FileResponse("client/dist/index.html")
 
 
 @app.get("/api")
