@@ -99,14 +99,15 @@ export const ScrollFrame = () => {
     };
   }, [loaded]);
 
-  return (
-    <div ref={wrapperRef} className="relative h-[700vh] bg-black">
-      <div
-        ref={pinRef}
-        className="relative h-screen w-full overflow-hidden bg-black"
-      >
-        <canvas ref={canvasRef} className="w-full h-full object-cover" />
+    return (
+      <div ref={wrapperRef} className="relative h-[300vh] bg-black">
+        <div
+          ref={pinRef}
+          className="relative h-screen w-full overflow-hidden bg-black"
+        >
+          <canvas ref={canvasRef} className="w-full h-full object-cover" />
+        </div>
       </div>
-    </div>
-  );
+    );
+
 };
