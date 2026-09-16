@@ -17,7 +17,7 @@ export const Header = () => {
             </span>
           </h1>
         </div>
-        <button className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs sm:text-sm font-medium hover:bg-cyan-400/20 hover:border-cyan-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
+        <button className="px-4 cursor-pointer sm:px-6 py-1.5 sm:py-2 rounded-full bg-cyan-400/10 border border-cyan-400/40 text-cyan-300 text-xs sm:text-sm font-medium hover:bg-cyan-400/20 hover:border-cyan-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
           Login
         </button>
       </div>
