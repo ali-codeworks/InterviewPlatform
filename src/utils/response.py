@@ -1,5 +1,6 @@
 from fastapi.responses import JSONResponse
-
+from functools import wraps
+from inspect import iscoroutinefunction
 
 def success_res(
     msg: str = "Your request was processed successfully",
@@ -20,3 +21,23 @@ def error_res(
         content={"message": msg, "error": err, "success": False},
         status_code=status_code,
     )
+
+
+def handle_exceptions(func):
+    @wraps(func)
+    async def async_wrapper(*args, **kwargs):
+        try:
+            return await func(*args, **kwargs)
+        except Exception as e:
+            return error_res("Internal Server Error", str(e), 500)
+
+    @wraps(func)
+    def sync_wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            return error_res("Internal Server Error", str(e), 500)
+
+    if iscoroutinefunction(func):
+        return async_wrapper
+    return sync_wrapper
